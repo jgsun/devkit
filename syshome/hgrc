@@ -1,0 +1,37 @@
+
+[ui]
+username = SUN Jianguo B <Jianguo.B.SUN@alcatel-sbell.com.cn>
+
+[merge-tools]
+# Override stock tool location
+kdiff3.executable = /usr/bin/kdiff3
+# Specify command line
+kdiff3.args = $base $local $other -o $output
+# Give higher priority
+kdiff3.priority = 1
+
+kdiff3.premerge = True
+kdiff3.diffargs=--L1 '$plabel1' --L2 '$clabel' $parent $child
+kdiff3.dirdiff = True
+
+[extensions]
+hgext.extdiff =
+hgext.purge =
+hgext.graphlog =
+hgext.mq =
+share =
+hgext.color=
+# rebase =
+
+[extdiff]
+cmd.kompare =
+cmd.kdiff3 =
+cmd.meld =
+
+# export HGHOME=/home/buildmgr/bin5.6
+# %include $HGHOME/mercurial-scripts/configfiles/hgrc-default
+# %include /home/jiangusu/hgrc-default
+
+
+[tortoisehg]
+editor = kdiff3
