@@ -8,3 +8,11 @@
 	br = branch
 	bra = branch -a
 	unstage = reset HEAD
+[http]
+	proxy = 135.245.48.34:8000
+[https]
+	proxy = 135.245.48.34:8000
+[url "https://github.com/"]
+	insteadOf = git://github.com/
+[core]
+	gitproxy = gitproxy
