@@ -1,0 +1,61 @@
+#!/bin/sh
+
+# you can modify below settings for your new project
+PROJECT_NAME="linux"
+PROJECT_PORT=10004
+PROJECT_PASSWORD="123456"
+PROJECT_SOURCE_PATH=/repo/jiangusu/open-source/linux
+PROJECT_CONFIG_PATH=~/.vscode/linux
+PROJECT_HOME_PATH=~
+
+# please keep your name in the container name
+CONTAINER_NAME="$(whoami)_vscode_$PROJECT_NAME"
+
+# local vscode server image
+# VSCODE_IMAGE="localhost:10000/vscode-server"
+VSCODE_IMAGE="panguolin/vscode-server"
+VSCODE_IMAGE="jgsun/code-server"
+
+start_container()
+{
+    docker run -ti --rm                                              \
+               -e PASSWORD=$PROJECT_PASSWORD                        \
+               -u root			                             \
+               -p $PROJECT_PORT:8443                                \
+               --name $CONTAINER_NAME                               \
+               -v $PROJECT_SOURCE_PATH:/home/coder/project          \
+               -v $PROJECT_HOME_PATH:/home/jiangusu                  \
+               -v /usr/include:/usr/include                         \
+               -v $PROJECT_CONFIG_PATH:/home/coder/project/.vscode  \
+               $VSCODE_IMAGE
+}
+
+stop_container()
+{
+    docker container stop $CONTAINER_NAME
+}
+
+login_container()
+{
+    docker exec -it $CONTAINER_NAME bash
+}
+
+case "$1" in
+    start)
+        start_container
+        ;;
+    stop)
+        stop_container
+        ;;
+    login)
+        login_container
+        ;;
+    restart)
+        $0 stop
+        sleep 1
+        $0 start
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|login|restart}"
+        exit 1
+esac
