@@ -4,21 +4,19 @@
 PROJECT_NAME="linux"
 PROJECT_PORT=10004
 PROJECT_PASSWORD="123456"
-PROJECT_SOURCE_PATH=/repo/jiangusu/open-source/linux
-PROJECT_CONFIG_PATH=~/.vscode/linux
-PROJECT_HOME_PATH=~
+PROJECT_SOURCE_PATH=/home/jgsun/work/repo/open-source/linux
+PROJECT_CONFIG_PATH=/home/jgsun/.vscode/linux
+PROJECT_HOME_PATH=/home/jgsun
 
 # please keep your name in the container name
 CONTAINER_NAME="$(whoami)_vscode_$PROJECT_NAME"
 
 # local vscode server image
-# VSCODE_IMAGE="localhost:10000/vscode-server"
-VSCODE_IMAGE="panguolin/vscode-server"
 VSCODE_IMAGE="jgsun/code-server"
 
 start_container()
 {
-    docker run -ti --rm                                              \
+    docker run -ti -d --rm                                              \
                -e PASSWORD=$PROJECT_PASSWORD                        \
                -u root			                             \
                -p $PROJECT_PORT:8443                                \
