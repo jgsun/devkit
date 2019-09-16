@@ -1,12 +1,12 @@
 #!/bin/sh
 
 # you can modify below settings for your new project
-PROJECT_NAME="linux"
+PROJECT_NAME=$(basename $PWD)
 PROJECT_PORT=10004
 PROJECT_PASSWORD="123456"
-PROJECT_SOURCE_PATH=/home/jgsun/work/repo/open-source/linux
-PROJECT_CONFIG_PATH=/home/jgsun/.vscode/linux
-PROJECT_HOME_PATH=/home/jgsun
+PROJECT_SOURCE_PATH=$PWD
+PROJECT_CONFIG_PATH=/home/$(whoami)/.vscode/default
+PROJECT_HOME_PATH=$HOME
 
 # please keep your name in the container name
 CONTAINER_NAME="$(whoami)_vscode_$PROJECT_NAME"
@@ -14,15 +14,39 @@ CONTAINER_NAME="$(whoami)_vscode_$PROJECT_NAME"
 # local vscode server image
 VSCODE_IMAGE="jgsun/code-server"
 
+parse_para()
+{
+    if [ $(echo $1 | cut -d'=' -f1) = "c" ]; then
+        PROJECT_CONFIG_PATH=$(echo $1 | cut -d'=' -f2)
+    fi
+
+    if [ $(echo $1 | cut -d'=' -f1) = "p" ]; then
+        PROJECT_PORT=$(echo $1 | cut -d'=' -f2)
+    fi
+}
+
 start_container()
 {
-    docker run -ti -d --rm                                              \
+    if [ "$#" -eq 1 ]; then
+        parse_para $1
+    fi
+
+    if [ "$#" -eq 2 ]; then
+        parse_para $1
+        parse_para $2
+    fi
+
+    echo "    Source: $PROJECT_SOURCE_PATH"
+    echo "    Config: $PROJECT_CONFIG_PATH"
+    echo "    Port: $PROJECT_PORT"
+    #exit
+    docker run -ti -d --rm                                          \
                -e PASSWORD=$PROJECT_PASSWORD                        \
-               -u root			                             \
+               -u root			                            \
                -p $PROJECT_PORT:8443                                \
                --name $CONTAINER_NAME                               \
                -v $PROJECT_SOURCE_PATH:/home/coder/project          \
-               -v $PROJECT_HOME_PATH:/home/jiangusu                  \
+               -v $PROJECT_HOME_PATH:/home/jiangusu                 \
                -v /usr/include:/usr/include                         \
                -v $PROJECT_CONFIG_PATH:/home/coder/project/.vscode  \
                $VSCODE_IMAGE
@@ -40,7 +64,8 @@ login_container()
 
 case "$1" in
     start)
-        start_container
+        echo cmd: $(basename $0) $1 $2 $3
+        start_container $2 $3
         ;;
     stop)
         stop_container
@@ -54,6 +79,7 @@ case "$1" in
         $0 start
         ;;
     *)
-        echo "Usage: $0 {start|stop|login|restart}"
+        echo "Usage: $0 {start|stop|login|restart} [c=config file] [p=port]"
+	echo "please run it in path of source code."
         exit 1
 esac
