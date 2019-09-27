@@ -12,3 +12,7 @@
 	insteadOf = git://github.com/
 [core]
 	gitproxy = gitproxy
+[http]
+        proxy = http://135.245.48.34:8000
+[https]
+        proxy = http://135.245.48.34:8000
