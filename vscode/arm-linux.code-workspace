@@ -1,0 +1,46 @@
+{
+	"folders": [
+		{
+			"path": "C:\\work\\repo\\oss\\linux"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.Trash*": true,
+			"**/.vscode": true,
+			"**/arch/csky": true,
+			"**/arch/nds32": true,
+			"**/arch/riscv": true,
+			"**/arch/alpha": true,
+			"**/arch/arc": true,
+			"**/arch/arm": true,
+			"**/arch/avr32": true,
+			"**/arch/blackfin": true,
+			"**/arch/c6x": true,
+			"**/arch/cris": true,
+			"**/arch/frv": true,
+			"**/arch/h8300": true,
+			"**/arch/hexagon": true,
+			"**/arch/ia64": true,
+			"**/arch/m32r": true,
+			"**/arch/m68k": true,
+			"**/arch/metag": true,
+			"**/arch/microblaze": true,
+			"**/arch/mips": true,
+			"**/arch/mn10300": true,
+			"**/arch/nios2": true,
+			"**/arch/openrisc": true,
+			"**/arch/powerpc": true,
+			"**/arch/parisc": true,
+			"**/arch/s390": true,
+			"**/arch/score": true,
+			"**/arch/sh": true,
+			"**/arch/sparc": true,
+			"**/arch/tile": true,
+			"**/arch/um": true,
+			"**/arch/unicore32": true,
+			"**/arch/x86": true,
+			"**/arch/xtensa": true
+		}
+	}
+}
