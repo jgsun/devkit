@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# define color variable
+RED='\E[1;31m'       # red
+GREEN='\E[1;32m'    # green
+RES='\E[0m'          # clear color
+
 # you can modify below settings for your new project
 PROJECT_NAME=$(basename $PWD)
 PROJECT_PORT=10004
@@ -36,9 +41,9 @@ start_container()
         parse_para $2
     fi
 
-    echo "    Source: $PROJECT_SOURCE_PATH"
-    echo "    Config: $PROJECT_CONFIG_PATH"
-    echo "    Port: $PROJECT_PORT"
+    echo -e "    ${RED}Source: $PROJECT_SOURCE_PATH${RES}"
+    echo -e "    ${RED}Config: $PROJECT_CONFIG_PATH${RES}"
+    echo -e "    ${GREEN}Port: $PROJECT_PORT${RES}"
     #exit
     docker run -ti -d --rm                                          \
                -e PASSWORD=$PROJECT_PASSWORD                        \
