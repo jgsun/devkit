@@ -6,15 +6,19 @@ GREEN='\E[1;32m'    # green
 RES='\E[0m'          # clear color
 
 # you can modify below settings for your new project
-PROJECT_NAME=$(basename $PWD)
+#subsitute space, slash, dot and dash by underscores
+# PROJECT_NAME=$(nerbasename $PWD)
+PROJECT_NAME=$(echo "$PWD" | sed -e 's/[ -./]/_/g')
 PROJECT_PORT=10004
 PROJECT_PASSWORD="123456"
 PROJECT_SOURCE_PATH=$PWD
 PROJECT_CONFIG_PATH=/home/$(whoami)/.vscode/default
 PROJECT_HOME_PATH=$HOME
+PROJECT_REPO_PATH=/repo/$(whoami)
 
 # please keep your name in the container name
-CONTAINER_NAME="$(whoami)_vscode_$PROJECT_NAME"
+# CONTAINER_NAME="$(whoami)_vscode_$PROJECT_NAME
+CONTAINER_NAME=vscode_$PROJECT_NAME
 
 # local vscode server image
 VSCODE_IMAGE="jgsun/code-server"
@@ -44,18 +48,21 @@ start_container()
     echo -e "    ${RED}Source: $PROJECT_SOURCE_PATH${RES}"
     echo -e "    ${RED}Config: $PROJECT_CONFIG_PATH${RES}"
     echo -e "    ${GREEN}Port: $PROJECT_PORT${RES}"
+    echo -e "    ${GREEN}container: $CONTAINER_NAME${RES}"
+
     #exit
-    docker run -ti -d --rm                                          \
-               -e PASSWORD=$PROJECT_PASSWORD                        \
-               -u root			                            \
-               -p $PROJECT_PORT:8443                                \
-               --name $CONTAINER_NAME                               \
-               -v $PROJECT_SOURCE_PATH:/home/coder/project          \
-               -v $PROJECT_HOME_PATH:/home/jiangusu                 \
-               -v /usr/include:/usr/include                         \
-               -v $PROJECT_CONFIG_PATH:/home/coder/project/.vscode  \
+    docker run -ti -d --rm						\
+               -e PASSWORD=$PROJECT_PASSWORD				\
+               -u root							\
+               -p $PROJECT_PORT:8443					\
+               --name $CONTAINER_NAME					\
+               -v $PROJECT_SOURCE_PATH:/home/coder/project		\
+	       -v $PROJECT_HOME_PATH:/home/$(whoami)			\
+               -v $PROJECT_CONFIG_PATH:/home/coder/project/.vscode	\
+	       -v $PROJECT_REPO_PATH:/repo/$(whoami)			\
                $VSCODE_IMAGE
 }
+#-v /usr/include:/usr/include				\
 
 stop_container()
 {
