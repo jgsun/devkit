@@ -21,7 +21,7 @@ PROJECT_REPO_PATH=/repo/$(whoami)
 CONTAINER_NAME=vscode_$PROJECT_NAME
 
 # local vscode server image
-VSCODE_IMAGE="jgsun/code-server"
+VSCODE_IMAGE="jgsun/vscode-server"
 
 parse_para()
 {
@@ -54,7 +54,7 @@ start_container()
     docker run -ti -d --rm						\
                -e PASSWORD=$PROJECT_PASSWORD				\
                -u root							\
-               -p $PROJECT_PORT:8443					\
+               -p $PROJECT_PORT:8080					\
                --name $CONTAINER_NAME					\
                -v $PROJECT_SOURCE_PATH:/home/coder/project		\
 	       -v $PROJECT_HOME_PATH:/home/$(whoami)			\
