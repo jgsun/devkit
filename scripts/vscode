@@ -19,6 +19,7 @@ PROJECT_REPO_PATH=/repo/$(whoami)
 # please keep your name in the container name
 # CONTAINER_NAME="$(whoami)_vscode_$PROJECT_NAME
 CONTAINER_NAME=vscode_$PROJECT_NAME
+CONTAINER_NAME=$(whoami)_code_server
 
 # local vscode server image
 VSCODE_IMAGE="jgsun/vscode-server"
