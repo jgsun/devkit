@@ -3,10 +3,10 @@
 
 class State:
 	timout = 2
-	vscode_start = "vscode start p=10086\n"
-	vscode_echo = "vscode echo\n"
-	vscode_login = "vscode login\n"
-	vscode_set = "vscode set\n"
+	vscode_start = "/repo2/jiangusu/devkit/vscode/vscode start p=10086\n"
+	vscode_echo = "/repo2/jiangusu/devkit/vscode/vscode echo\n"
+	vscode_login = "/repo2/jiangusu/devkit/vscode/vscode login\n"
+	vscode_set = "/repo2/jiangusu/devkit/vscode/vscode set\n"
 	keep_typing = "\n"
 
 def Main():
@@ -24,13 +24,15 @@ def Main():
 	objTab.Screen.Send(state.vscode_login)
 	objTab.Screen.WaitForStrings("*:/home/coder/project#", 1)
 
-	objTab.Screen.Send("cd /home/jiangusu/work/devkit/vscode/\n")
-	objTab.Screen.Send("mkdir -p /root/.local/share/code-server/User/\n")
-	objTab.Screen.Send("cp -f settings.json /root/.local/share/code-server/User/\n")
-	objTab.Screen.Send("cp -f keybindings.json /root/.local/share/code-server/User/\n")
-	objTab.Screen.Send("tar xzf hg_dts_mips_markdown.tar.gz -C /root/.local/share/code-server/extensions/\n")
-	objTab.Screen.Send("tar xzf python.tar.gz -C /root/.local/share/code-server/extensions/\n")
-	objTab.Screen.Send("tar xzf cpp_go_json.tar.gz -C /root/.local/share/code-server/extensions/\n")
+	objTab.Screen.Send("export src=/home/jiangusu/work/devkit/vscode/\n")
+	objTab.Screen.Send("export dst=/root/.local/share/code-server/\n")
+#	objTab.Screen.Send("cd /home/jiangusu/work/devkit/vscode/\n")
+	objTab.Screen.Send("mkdir -p $dst/User/\n")
+	objTab.Screen.Send("cp -f $src/settings.json $dst/User/\n")
+	objTab.Screen.Send("cp -f $src/keybindings.json $dst/User/\n")
+	objTab.Screen.Send("tar xzf $src/hg_dts_mips_markdown.tar.gz -C $dst/extensions/\n")
+	objTab.Screen.Send("tar xzf $src/python.tar.gz -C $dst/extensions/\n")
+	objTab.Screen.Send("tar xzf $src/cpp_go_json.tar.gz -C $dst/extensions/\n")
 	objTab.Screen.Send("exit\n")
 	objTab.Screen.WaitForStrings("exit", 20)
 
