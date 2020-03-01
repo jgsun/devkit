@@ -25,7 +25,7 @@ def Main():
 	objTab.Screen.WaitForStrings("*:/home/coder/project#", 1)
 
 	objTab.Screen.Send("export src=/repo2/jiangusu/devkit/vscode/\n")
-	objTab.Screen.Send("export dst=/home/coder/.local/share/code-server/\n")
+	objTab.Screen.Send("export dst=/root//.local/share/code-server/\n")
 #	objTab.Screen.Send("cd /home/jiangusu/work/devkit/vscode/\n")
 	objTab.Screen.Send("mkdir -p $dst/User/\n")
 	objTab.Screen.Send("cp -f $src/settings.json $dst/User/\n")

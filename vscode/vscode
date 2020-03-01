@@ -56,7 +56,7 @@ start_container()
     #exit
     docker run -ti -d --rm						\
                -e PASSWORD=$PROJECT_PASSWORD				\
-               -u coder							\
+               -u root							\
                -p $PROJECT_PORT:8080					\
                --name $CONTAINER_NAME					\
                -v $PROJECT_SOURCE_PATH:/home/coder/project		\
