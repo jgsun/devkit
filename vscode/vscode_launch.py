@@ -22,7 +22,7 @@ def Main():
 	objTab.Screen.WaitForStrings("*:/home/coder/project#", 1)
 
 	objTab.Screen.Send(state.vscode_login)
-	objTab.Screen.WaitForStrings("*:/home/coder/project#", 1)
+	objTab.Screen.WaitForStrings("*:/home/coder/project#", 2)
 
 	objTab.Screen.Send("export src=/repo2/jiangusu/devkit/vscode/\n")
 	objTab.Screen.Send("export dst=/root//.local/share/code-server/\n")
