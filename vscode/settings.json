@@ -180,6 +180,10 @@
         "**/sw/vobs/esam/build": true,
         "**/sw/vobs/dsl/sw/flat": true,
         "**/sw/vobs/dsl/sw/src": true,
+        "**/sw/vobs/dsl/sw/itf": true,
+        "**/sw/vobs/dsl/itf": true,
+        "**/sw/vobs/dsl/sw/include": true,
+        "**/sw/vobs/dsl/sw/tools": true,
         "**/sw/vobs/dsl/sw/y": true,
         "**/sw/vobs/dsl/sw/build": true
     }
