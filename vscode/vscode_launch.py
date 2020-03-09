@@ -33,6 +33,7 @@ def Main():
 	objTab.Screen.Send("tar xzf $src/hg_dts_mips_markdown.tar.gz -C $dst/extensions/\n")
 	objTab.Screen.Send("tar xzf $src/python.tar.gz -C $dst/extensions/\n")
 	objTab.Screen.Send("tar xzf $src/cpp_go_json.tar.gz -C $dst/extensions/\n")
+	objTab.Screen.Send("tar xzf $src/make.tar.gz -C $dst/extensions/\n")
 	objTab.Screen.Send("exit\n")
 	objTab.Screen.WaitForStrings("exit", 20)
 
