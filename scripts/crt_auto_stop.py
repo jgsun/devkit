@@ -19,8 +19,8 @@ def f_uboot(state):
 def linux_login():
 	objTab = crt.GetScriptTab()
 	objTab.Screen.Send("\n")
-	ok = objTab.Screen.WaitForString("isam-reborn login:", 1)
-#	ok = objTab.Screen.WaitForString("shelf-ne login:", 1)
+#	ok = objTab.Screen.WaitForString("isam-reborn login:", 1)
+	ok = objTab.Screen.WaitForString("shelf-ne login:", 1)
 	if not ok:
 		return
 	objTab.Screen.Send("root\n")
