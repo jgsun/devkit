@@ -24,7 +24,7 @@ CONTAINER_NAME=$(whoami)_code_server
 
 # local vscode server image
 # VSCODE_IMAGE="jgsun/vscode-server"
-VSCODE_IMAGE="codercom/code-server"
+VSCODE_IMAGE="codercom/code-server:3.0.1"
 
 parse_para()
 {

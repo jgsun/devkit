@@ -28,6 +28,7 @@ def Main():
 	objTab.Screen.Send("export dst=/root//.local/share/code-server/\n")
 #	objTab.Screen.Send("cd /home/jiangusu/work/devkit/vscode/\n")
 	objTab.Screen.Send("mkdir -p $dst/User/\n")
+	objTab.Screen.Send("mkdir -p $dst/extensions/\n")
 	objTab.Screen.Send("cp -f $src/settings.json $dst/User/\n")
 	objTab.Screen.Send("cp -f $src/keybindings.json $dst/User/\n")
 	objTab.Screen.Send("tar xzf $src/hg_dts_mips_markdown.tar.gz -C $dst/extensions/\n")
