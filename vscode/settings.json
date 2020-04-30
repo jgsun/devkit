@@ -15,10 +15,10 @@
     "explorer.decorations.badges": false,
     "workbench.colorCustomizations": {
     "editor.selectionHighlightBackground": "#DBA901"
-    }
+    },
     "files.exclude": {
         "**/.vscode": true,
-	"**/.git": true,
+        "**/.git": true,
         "**/.svn": true,
         "**/.hg": true,
         "**/CVS": true,
@@ -87,7 +87,7 @@
         "**/arch/unicore32": true,
         "**/arch/x86": true,
         "**/arch/xtensa": true,
-	"**/uboot-core0/executive": true,
+	"**/uboot/executive": true,
         "**/buildroot/output": true,
         "**/vobs/esam/objects": true,
         "**/sw/build/agnt-a": true,
@@ -186,5 +186,12 @@
         "**/sw/vobs/dsl/sw/tools": true,
         "**/sw/vobs/dsl/sw/y": true,
         "**/sw/vobs/dsl/sw/build": true
+        "**/uboot/board/octeon/ni*": true,
+        "**/uboot/board/octeon/ge*": true,
+        "**/uboot/board/octeon/r*": true,
+        "**/uboot/board/octeon/cn*": true,
+        "**/uboot/board/octeon/sff*": true,
+        "**/uboot/board/octeon/t*": true,
+        "**/uboot/board/octeon/e*": true
     }
 }
