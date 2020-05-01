@@ -26,15 +26,11 @@ def Main():
 
 	objTab.Screen.Send("export src=/repo2/jiangusu/devkit/vscode/\n")
 	objTab.Screen.Send("export dst=/root//.local/share/code-server/\n")
-#	objTab.Screen.Send("cd /home/jiangusu/work/devkit/vscode/\n")
 	objTab.Screen.Send("mkdir -p $dst/User/\n")
-	objTab.Screen.Send("mkdir -p $dst/extensions/\n")
-	objTab.Screen.Send("cp -f $src/settings.json $dst/User/\n")
-	objTab.Screen.Send("cp -f $src/keybindings.json $dst/User/\n")
-	objTab.Screen.Send("tar xzf $src/hg_dts_mips_markdown.tar.gz -C $dst/extensions/\n")
-	objTab.Screen.Send("tar xzf $src/python.tar.gz -C $dst/extensions/\n")
-	objTab.Screen.Send("tar xzf $src/cpp_go_json.tar.gz -C $dst/extensions/\n")
-	objTab.Screen.Send("tar xzf $src/make.tar.gz -C $dst/extensions/\n")
+	objTab.Screen.Send("ln -s $src/settings.json $dst/User/settings.json\n")
+	objTab.Screen.Send("ln -s $src/keybindings.json $dst/User/keybindings.json\n")
+	objTab.Screen.Send("ln -s $src/extensions $dst/extensions\n")
+
 	objTab.Screen.Send("exit\n")
 	objTab.Screen.WaitForStrings("exit", 20)
 
