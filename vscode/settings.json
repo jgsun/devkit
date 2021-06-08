@@ -123,8 +123,8 @@
         "**/board/altera": true,
         "**/board/a*": true,
         "**/board/b*": true,
-        "**/board/l*": true,
         "**/board/r*": true,
+        "**/board/li*": true,
         "**/board/s*": true,
         "**/board/arcturus": true,
         "**/board/arm": true,
@@ -218,7 +218,7 @@
         "**/sw/vobs/dsl/sw/include": true,
         "**/sw/vobs/dsl/sw/tools": true,
         "**/sw/vobs/dsl/sw/y": true,
-        "**/sw/vobs/dsl/sw/build": true
+        "**/sw/vobs/dsl/sw/build": true,
         "**/board/octeon/ni*": true,
         "**/board/octeon/ge*": true,
         "**/board/octeon/r*": true,
@@ -228,5 +228,7 @@
         "**/board/octeon/e*": true,
         "**/tags": true,
         "**/cscope.out": true,
-    }
+        "**/output/build": true,
+}
+"http.proxyAuthorization": null
 }
