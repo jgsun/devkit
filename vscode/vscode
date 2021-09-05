@@ -23,8 +23,8 @@ CONTAINER_NAME=vscode_$PROJECT_NAME
 CONTAINER_NAME=$(whoami)_code_server
 
 # local vscode server image
-# VSCODE_IMAGE="jgsun/vscode-server"
-VSCODE_IMAGE="codercom/code-server"
+VSCODE_IMAGE="jgsun/code-server"
+# VSCODE_IMAGE="codercom/code-server"
 
 parse_para()
 {
@@ -55,7 +55,9 @@ start_container()
 
     #exit
     docker run -ti -d --rm						\
+               --cap-add=SYS_PTRACE --security-opt seccomp=unconfined   \
                -e PASSWORD=$PROJECT_PASSWORD				\
+               -e user-data-dir=/usr/local/share/code-server		\
                -u root							\
                -p $PROJECT_PORT:8080					\
                --name $CONTAINER_NAME					\
