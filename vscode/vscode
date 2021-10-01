@@ -55,6 +55,7 @@ start_container()
 
     #exit
     docker run -ti -d --rm						\
+               --cap-add=SYS_PTRACE --security-opt seccomp=unconfined   \
                -e PASSWORD=$PROJECT_PASSWORD				\
                -u ""$(id -u):$(id -g)""					\
 	       -e "DOCKER_USER=$USER"                                   \
