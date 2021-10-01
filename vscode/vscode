@@ -9,7 +9,7 @@ RES='\E[0m'          # clear color
 #subsitute space, slash, dot and dash by underscores
 # PROJECT_NAME=$(nerbasename $PWD)
 PROJECT_NAME=$(echo "$PWD" | sed -e 's/[ -./]/_/g')
-PROJECT_PORT=10004
+PROJECT_PORT=10086
 PROJECT_PASSWORD="123456"
 PROJECT_SOURCE_PATH=$PWD
 PROJECT_CONFIG_PATH=/home/$(whoami)/.vscode/default
@@ -55,17 +55,16 @@ start_container()
 
     #exit
     docker run -ti -d --rm						\
-               --cap-add=SYS_PTRACE --security-opt seccomp=unconfined   \
                -e PASSWORD=$PROJECT_PASSWORD				\
-               -e user-data-dir=/usr/local/share/code-server		\
-               -u root							\
+               -u ""$(id -u):$(id -g)""					\
+	       -e "DOCKER_USER=$USER"                                   \
                -p $PROJECT_PORT:8080					\
                --name $CONTAINER_NAME					\
                -v $PROJECT_SOURCE_PATH:/home/coder/project		\
-	       -v $PROJECT_HOME_PATH:/home/$(whoami)			\
+	       -v $PROJECT_HOME_PATH:$HOME				\
                -v $PROJECT_CONFIG_PATH:/home/coder/project/.vscode	\
 	       -v $PROJECT_REPO_PATH:/repo/$(whoami)			\
-	       -v $PROJECT_REPO2_PATH:/repo2/jiangusu			\
+	       -v $PROJECT_REPO2_PATH:/repo2/$(whoami)			\
                $VSCODE_IMAGE
 }
 #-v /usr/include:/usr/include				\
